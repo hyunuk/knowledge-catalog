@@ -54,7 +54,7 @@ try:
     ).result()
     print(f"Created regional Business Glossary: {GLOSSARY_ID} ({REGION})")
 except exceptions.AlreadyExists:
-    print(f"Reusing existing Business Glossary: {GLOSSARY_ID} ({REGION})")
+    print(f"Business Glossary already exists: {GLOSSARY_ID} ({REGION})")
 
 term_definitions = [
     (
@@ -192,7 +192,7 @@ for parent_group, link_id, link_type, references in link_specs:
         )
         print(f"Created EntryLink: {link_id} ({link_type.rsplit('/', 1)[-1]})")
     except exceptions.AlreadyExists:
-        print(f"Reusing existing EntryLink: {link_id}")
+        print(f"EntryLink already exists: {link_id}")
 
 # Attach agent SQL join guidelines to orders so lookup_context compiles join + formula guidance
 guidelines_struct = struct_pb2.Struct()

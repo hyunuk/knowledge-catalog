@@ -59,7 +59,7 @@ try:
     ).result()
     print(f"Created custom AspectType: {ASPECT_TYPE_ID} ({REGION})")
 except exceptions.AlreadyExists:
-    print(f"Reusing existing custom AspectType: {ASPECT_TYPE_ID} ({REGION})")
+    print(f"AspectType already exists: {ASPECT_TYPE_ID} ({REGION})")
 
 
 def attach_column_contracts(table_id: str, column_specs: dict[str, dict[str, str]]) -> None:
