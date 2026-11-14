@@ -27,7 +27,7 @@ orders_entry = table_entry_name("orders")
 adjustments_entry = table_entry_name("order_adjustments")
 
 # Extract numeric PROJECT_NUMBER from the normalized aspect key attached in Step 3
-hydrated_adj = catalog_client.lookup_entry(
+populated_adj = catalog_client.lookup_entry(
     request=dataplex_v1.LookupEntryRequest(
         name=f"projects/{PROJECT_ID}/locations/{REGION}",
         entry=adjustments_entry,
@@ -35,7 +35,7 @@ hydrated_adj = catalog_client.lookup_entry(
     )
 )
 suffix_marker = f".{REGION}.{ASPECT_TYPE_ID}@Schema.chargeback_hold_amount"
-normalized_key = next(k for k in hydrated_adj.aspects if k.endswith(suffix_marker))
+normalized_key = next(k for k in populated_adj.aspects if k.endswith(suffix_marker))
 project_number = normalized_key.split(".", 1)[0]
 
 glossary_parent = f"projects/{PROJECT_ID}/locations/{REGION}"
