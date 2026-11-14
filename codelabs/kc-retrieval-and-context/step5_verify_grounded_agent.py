@@ -81,9 +81,8 @@ assert governed_val == Decimal("4570.00"), (
     f"from SQL:\n{parsed_sql.sql_query}"
 )
 
+single_line_sql = " ".join(sanitize_display_text(parsed_sql.sql_query).split())
 print(f"Grounded Gemini model ({GEMINI_LOCATION}): {model_id}")
-print("Generated SQL (project ID masked):")
-for sql_line in sanitize_display_text(parsed_sql.sql_query).strip().splitlines():
-    print(f"  {sql_line}")
+print(f"Generated SQL (project ID masked): {single_line_sql}")
 print(f"Applied catalog rules: {parsed_sql.applied_rules_summary}")
 print(f"Verified BigQuery net_settled_revenue_usd: {governed_val}")
